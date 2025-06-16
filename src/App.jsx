@@ -7,12 +7,12 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route index  element={<Home />} />
-          <Route path="*" element={<NotFound/>} />
+          <Route index element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
   )
 }
 
-export default App
+export default App;

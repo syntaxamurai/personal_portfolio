@@ -49,22 +49,22 @@
   }
   @keyframes meteor {
     0% {
-      transform: rotate(215 deg) translateX(0);
+      transform: rotate(215deg) translateX(0);
       opacity: 1;
     }
     70% {
       opacity: 1;
     }
     100% {
-      transform: rotate(215 deg) translateX(-500px);
+      transform: rotate(215deg) translateX(-500px);
       opacity: 0;
     }
   }
-};
+}
 
 @layer base {
   :root {
-    --background: 219 40% 98%;
+    --background: 210 40% 98%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -139,7 +139,9 @@
 }
 
 @utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:scale-105 active:scale-95;
+  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
+         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
+         hover:scale-105 active:scale-95;
 }
 
 @utility star {
@@ -155,6 +157,6 @@
 #root {
   max-width: 100%;
   margin: 0 auto;
-  padding: 0%;
+  padding: 0;
   text-align: center;
 }
