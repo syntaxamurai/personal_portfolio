@@ -9,11 +9,6 @@ export const HeroSection = () => {
                     <span className="text-primary opacity-0 animate-fade-in-delay-1"> Justin </span>
                     <span className="text-gradient ml-2 opacity-0 animate-fade-in-delay-2"> Abwunza </span>
                 </h1>
-
-                <h3 className="text-2xl text-gradient md:text-4xl font-mono tracking-wide animate-fade-in-delay-2">
-                    Developer by Trade. Designer at Heart.
-                </h3>
-
                 <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
                     I bridge the gap between aesthetics and logic. With attention to both user experience and code quality, I create web experiences with modern technologies that feel as good as they look.
                 </p>
