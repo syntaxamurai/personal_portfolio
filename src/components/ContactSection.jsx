@@ -2,15 +2,17 @@ import { Linkedin, Mail, MapPin, MessageCircle, MessageSquare, Phone, Send } fro
 import { cn } from "../lib/utils"
 import emailjs from "emailjs-com"
 import { useState } from "react"
+import { useToast } from "../hooks/use-toast";
 
 export const ContactSection = () => {
+
+    const {toast} = useToast();
     
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         message: "",
     });
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -26,6 +28,13 @@ export const ContactSection = () => {
                 setFormData({ name: "", email: "", message: ""})
         })
             .catch(() => alert("Ooops! Something went wrong. Please Try again!"));
+
+        setTimeout(() => {
+            toast({
+                title: "Message sent succesfully!",
+                description: "Thank you for your message. I'll get back to you soon!"
+            });
+        }, 1500);
     };
 
     
@@ -99,7 +108,10 @@ export const ContactSection = () => {
                     </div>
                 </div>
 
-                <div className="bg-card p-8 rounded-lg shadow-xs">
+                <div 
+                    className="bg-card p-8 rounded-lg shadow-xs"
+                    onSubmit={handleSubmit}    
+                >
                     <h3 className="text-2xl font-semibold mb-6">
                         Send a Message
                     </h3>
