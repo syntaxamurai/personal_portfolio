@@ -1,4 +1,4 @@
-import { Mail, Phone } from "lucide-react"
+import { Mail, MapPin, Phone } from "lucide-react"
 
 export const ContactSection = () => {
     return (
@@ -47,12 +47,12 @@ export const ContactSection = () => {
 
                         <div className="flex items-start space-x-4">
                             <div className="p-3 rounded-full bg-primary/10">
-                                <Mail className="h-6 w-6 text-primary"/>
+                                <MapPin className="h-6 w-6 text-primary"/>
                             </div>
                             <div>
-                                <h4 className="font-medium">Email</h4>
-                                <a href="mailto:justinabwunza@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                                justinabwunza@gmail.com
+                                <h4 className="font-medium">Location</h4>
+                                <a className="text-muted-foreground hover:text-primary transition-colors">
+                                Nairobi, Kenya
                                 </a>
                             </div>
                         </div>
