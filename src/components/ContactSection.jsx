@@ -1,15 +1,43 @@
 import { Linkedin, Mail, MapPin, MessageCircle, MessageSquare, Phone, Send } from "lucide-react"
 import { cn } from "../lib/utils"
+import emailjs from "emailjs-com"
+import { useState } from "react"
+import { useToast } from "../hooks/use-toast";
 
 export const ContactSection = () => {
+
+    const {toast} = useToast();
+    
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        setTimeout(() => {
+        emailjs.sendForm(
+                import.meta.env.VITE_SERVICE_ID, 
+                import.meta.env.VITE_TEMPLATE_ID, 
+                e.currentTarget, 
+                import.meta.env.VITE_PUBLIC_KEY,
+            )
+            .then((result) => {
+                alert("Message Sent!");
+                setFormData({ name: "", email: "", message: ""})
+        })
+            .catch(() => alert("Ooops! Something went wrong. Please Try again!"));
 
-        }, 1500)
-    }
+        setTimeout(() => {
+            toast({
+                title: "Message sent succesfully!",
+                description: "Thank you for your message. I'll get back to you soon!"
+            });
+        }, 1500);
+    };
+
+    
     return (
         <section 
             id='contact'
@@ -80,12 +108,15 @@ export const ContactSection = () => {
                     </div>
                 </div>
 
-                <div className="bg-card p-8 rounded-lg shadow-xs">
+                <div 
+                    className="bg-card p-8 rounded-lg shadow-xs"
+                    onSubmit={handleSubmit}    
+                >
                     <h3 className="text-2xl font-semibold mb-6">
                         Send a Message
                     </h3>
 
-                    <form className="space-y-6">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium mb-2">
                                 Your Name
@@ -95,7 +126,9 @@ export const ContactSection = () => {
                                 id="name" 
                                 name="name" 
                                 required 
-                                className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" placeholder="Justin Abwunza..."/>
+                                value={formData.name}
+                                className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" placeholder="Justin Abwunza..."
+                                onChange={(e) => setFormData({...formData, name: e.target.value})} />
                         </div>
 
                         <div>
@@ -107,7 +140,9 @@ export const ContactSection = () => {
                                 id="email" 
                                 name="email" 
                                 required 
-                                className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" placeholder="justinabwunza@gmail.com..."/>
+                                value={formData.email}
+                                className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" placeholder="justinabwunza@gmail.com..."
+                                onChange={(e) => setFormData({...formData, email: e.target.value})} />
                         </div>
 
                         <div>
@@ -118,7 +153,9 @@ export const ContactSection = () => {
                                 id="message" 
                                 name="message" 
                                 required 
-                                className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none" placeholder="Hello, I'd like to talk about..."/>
+                                value={formData.message}
+                                className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none" placeholder="Hello, I'd like to talk about..."
+                                onChange={(e) => setFormData({...formData, message: e.target.value})}/>
                         </div>
 
                         <button type="submit" className={cn("cosmic-button w-full flex items-center justify-center gap-2",
