@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react"
+import { Linkedin, Mail, MapPin, MessageCircle, MessageSquare, Phone } from "lucide-react"
 
 export const ContactSection = () => {
     return (
@@ -55,6 +55,18 @@ export const ContactSection = () => {
                                 Nairobi, Kenya
                                 </a>
                             </div>
+                        </div>
+                    </div>
+
+                    <div className="pt-8">
+                        <h4 className="font-medium mb-4"> Connect With Me</h4>
+                        <div className="flex space-x-4 justify-center">
+                            <a href="https://www.linkedin.com/in/justin-syntaxamurai" target="_blank">
+                                <Linkedin />
+                            </a>
+                            <a href="https://wa.me/+254758024011" target="_blank">
+                                <MessageCircle />
+                            </a>
                         </div>
                     </div>
                 </div>
