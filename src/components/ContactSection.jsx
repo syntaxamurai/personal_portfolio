@@ -27,7 +27,7 @@ export const ContactSection = () => {
                 alert("Message Sent!");
                 setFormData({ name: "", email: "", message: ""})
         })
-            .catch(() => alert("Ooops! Something went wrong. Please Try again!"));
+            .catch(() => alert("Ooops! Please Try again!"));
 
         setTimeout(() => {
             toast({
