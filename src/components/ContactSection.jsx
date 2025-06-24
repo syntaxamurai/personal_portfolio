@@ -7,6 +7,7 @@ import { useToast } from "../hooks/use-toast";
 export const ContactSection = () => {
 
     const {toast} = useToast();
+    const [isSubmitting, setIsSubmitting] = useState(false);
     
     const [formData, setFormData] = useState({
         name: "",
@@ -17,15 +18,17 @@ export const ContactSection = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        setIsSubmitting(true);
+
         emailjs.sendForm(
                 import.meta.env.VITE_SERVICE_ID, 
-                import.meta.env.VITE_TEMPLATE_ID, 
-                e.currentTarget, 
+                import.meta.env.VITE_TEMPLATE_ID,
+                e.target,
                 import.meta.env.VITE_PUBLIC_KEY,
             )
             .then((result) => {
                 alert("Message Sent!");
-                setFormData({ name: "", email: "", message: ""})
+                setFormData({ name: "", email: "", message: ""});
         })
             .catch(() => alert("Ooops! Please Try again!"));
 
@@ -34,7 +37,13 @@ export const ContactSection = () => {
                 title: "Message sent succesfully!",
                 description: "Thank you for your message. I'll get back to you soon!"
             });
+            setIsSubmitting(false);
         }, 1500);
+
+        console.log(import.meta.env.VITE_SERVICE_ID);
+        console.log(import.meta.env.VITE_TEMPLATE_ID);
+        console.log(import.meta.env.VITE_PUBLIC_KEY);
+
     };
 
     
@@ -110,7 +119,7 @@ export const ContactSection = () => {
 
                 <div 
                     className="bg-card p-8 rounded-lg shadow-xs"
-                    onSubmit={handleSubmit}    
+                    // onSubmit={handleSubmit}    
                 >
                     <h3 className="text-2xl font-semibold mb-6">
                         Send a Message
@@ -158,11 +167,14 @@ export const ContactSection = () => {
                                 onChange={(e) => setFormData({...formData, message: e.target.value})}/>
                         </div>
 
-                        <button type="submit" className={cn("cosmic-button w-full flex items-center justify-center gap-2",
+                        <button 
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={cn("cosmic-button w-full flex items-center justify-center gap-2",
 
 
                         )}>
-                            Send Message
+                            {isSubmitting ? "Sending..." : "Send Message"}
                             <Send size={16} />
                         </button>
                     </form>
