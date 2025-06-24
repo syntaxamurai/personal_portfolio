@@ -2,13 +2,9 @@ import { Linkedin, Mail, MapPin, MessageCircle, MessageSquare, Phone, Send } fro
 import { cn } from "../lib/utils"
 import emailjs from "emailjs-com"
 import { useState } from "react"
-import { useToast } from "../hooks/use-toast";
 
 export const ContactSection = () => {
-
-    const {toast} = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -33,17 +29,8 @@ export const ContactSection = () => {
             .catch(() => alert("Ooops! Please Try again!"));
 
         setTimeout(() => {
-            toast({
-                title: "Message sent succesfully!",
-                description: "Thank you for your message. I'll get back to you soon!"
-            });
             setIsSubmitting(false);
         }, 1500);
-
-        console.log(import.meta.env.VITE_SERVICE_ID);
-        console.log(import.meta.env.VITE_TEMPLATE_ID);
-        console.log(import.meta.env.VITE_PUBLIC_KEY);
-
     };
 
     
